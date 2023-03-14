@@ -15,23 +15,30 @@ body {
 .App {
   width: 100%;
   height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #F8F9FA;
 }
 
 .container {
   max-width: 700px;
-  height: 700px;
+  height: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  padding: 1rem;
 }
 
 .top {
-  width: 100%;
-  margin: 10px;
+  height: 60px;
   border-radius: 10px;
-  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #FFFFFF;
 }
 
@@ -41,63 +48,129 @@ font-size: 23pt;
 color: #262626;
 }
 
-.city-select {
-  display: inline-block;
-  border-radius: 10px;
-  position: relative;
+.section {
+  display: flex;
+  width: 100%;
+  border: 0.1px solid #E6E6E6;
+  padding: 1rem;
+  border-radius: 0.5rem;
   background-color: #FFFFFF;
 }
 
-.city-select select {
+.city-select {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  justify-content: center;
+}
+
+.city-select>select {
+  width: 100%;
+  border: 0.8px solid transparent;
   font-size: 13px;
   color: #262626;
 }
 
 .current-weather {
-  margin: 10px;
-  min-width: 200px;
-  border-radius: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   background-color: #FFFFFF;
 }
 
-.dataset1 {
+.dataset {
   display: flex;
   justify-content: space-between;
 }
 
-.dataset1 .city-name {
+.city-name {
   font-size: 19px;
   color: #262626;
   text-align: left;
 }
 
-.dataset1 .weather-desc {
+.weather-desc {
   font-size: 13px;
   color: #70757A;
   text-align: justify;
 }
 
-.dataset1 .weather-pic {
-  text-align: right;
+.weather-info {
+  display: flex;
 }
 
-.dataset1 .temperature {
+.weather-info>img {
+  display: flex;
+  margin-top: -30px;
+}
+
+
+.temperature {
   font-size: 26px;
   color: #262626;
 }
 
-.dataset1 .date {
+.date {
   font-size: 15px;
   color: #262626;
 }
 
-.dataset1 .time {
+.time {
   font-size: 13px;
   color: #70757A;
 }
 
-.dataset1 .additional-info {
+.additional-info {
   font-size: 13px;
   color: #70757A;
+}
+
+.forecast {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hourly-forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-and-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.1px solid #E6E6E6;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.forecast-time {
+  font-size: 13px;
+  color: #70757A;
+}
+
+.forecast-temperature {
+  font-size: 15px;
+  color: #70757A;
+}
+
+.forecast-additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10pt;
+  color: #70757A;
+  background-color: #E5F6FD;
+  width: 100%;
+  border: 0.1px solid #E6E6E6;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
