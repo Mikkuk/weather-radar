@@ -14,7 +14,6 @@ body {
 
 .App {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,20 +24,24 @@ body {
 .container {
   max-width: 700px;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: top;
+  margin: 1rem;
   padding: 1rem;
 }
 
 .top {
-  height: 60px;
-  border-radius: 10px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: top;
+  border: 0.1px solid #E6E6E6;
+  padding: 1rem;
   background-color: #FFFFFF;
 }
 
@@ -60,9 +63,8 @@ color: #262626;
 .city-select {
   display: flex;
   align-items: center;
-  padding: 20px;
-  margin: 10px;
   justify-content: center;
+  margin: 1rem;
 }
 
 .city-select>select {
@@ -70,6 +72,12 @@ color: #262626;
   border: 0.8px solid transparent;
   font-size: 13px;
   color: #262626;
+}
+
+.weather-component{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .current-weather {
@@ -132,11 +140,13 @@ color: #262626;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin: 1rem;
 }
 
 .hourly-forecast {
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
   align-items: center;
   justify-content: space-between;
 }
