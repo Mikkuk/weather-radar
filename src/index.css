@@ -152,6 +152,7 @@ color: #262626;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  background-color: #FFFFFF;
 }
 
 .time-and-weather {
@@ -160,6 +161,7 @@ color: #262626;
   align-items: center;
   justify-content: space-between;
   border: 0.1px solid #E6E6E6;
+  padding: 5px;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
@@ -183,6 +185,7 @@ color: #262626;
   font-size: 10pt;
   color: #70757A;
   background-color: #E5F6FD;
+  padding: 4px;
   width: 100%;
   border: 0.1px solid #E6E6E6;
   border-bottom-left-radius: 0.5rem;
