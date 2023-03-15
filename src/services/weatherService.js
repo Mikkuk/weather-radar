@@ -1,9 +1,11 @@
 import { cityCoordinates } from '../data/cities'
+
 const baseUrl = 'https://api.openweathermap.org/data/2.5/'
+// eslint-disable-next-line no-undef
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
 export const fetchWeatherData = async () => {
-  const apiKey = process.env.REACT_APP_WEATHER_API_KEY
-
+  // Fetch current weather and weather forecast data for all cities. Store and format data in the same datastructure.
   try {
     const data = await Promise.all(
       Object.values(cityCoordinates).map(async (city) => {
@@ -40,3 +42,5 @@ export const fetchWeatherData = async () => {
     console.log(err)
   }
 }
+
+export default fetchWeatherData

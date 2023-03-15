@@ -143,6 +143,7 @@ color: #262626;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 5px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
