@@ -140,13 +140,12 @@ color: #262626;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin: 1rem;
+  padding: 1rem;
 }
 
 .hourly-forecast {
   display: flex;
   flex-direction: column;
-  margin-right: 1rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -160,6 +159,7 @@ color: #262626;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
+
 
 .forecast-time {
   font-size: 13px;

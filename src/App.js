@@ -14,33 +14,45 @@ function App() {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY
-    const urls = Object.values(cityCoordinates).map(
-      (city) =>
-        `https://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=${apiKey}&units=metric`
-    )
 
-    axios
-      .all(urls.map((url) => axios.get(url)))
-      .then(
-        axios.spread((...responses) => {
-          const data = responses.map((response) => response.data)
-          setWeatherData(data)
-          console.log(data);
-        })
+    Promise.all(
+      Object.values(cityCoordinates).map((city) =>
+        fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${city.latitude}&lon=${city.longitude}&appid=${apiKey}&units=metric`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            return fetch(
+              `https://api.openweathermap.org/data/2.5/forecast?lat=${city.latitude}&lon=${city.longitude}&cnt=5&appid=${apiKey}&units=metric`
+            )
+              .then((res) => res.json())
+              .then((forecastData) => ({
+                name: data.name,
+                country: data.sys.country,
+                dt: data.dt,
+                wind: {
+                  speed: data.wind.speed,
+                },
+                weather: {
+                  main: data.weather[0].main,
+                  description: data.weather[0].description,
+                  icon: data.weather[0].icon,
+                },
+                main: {
+                  temp: data.main.temp,
+                  humidity: data.main.humidity,
+                },
+                forecast: forecastData,
+              }))
+          })
+          .catch((err) => console.log(err))
       )
-      .catch((error) => console.log(error))
-
-    // if (selectedCity) {
-    //   setWeatherData([])
-    //   const { latitude, longitude } = cityCoordinates[selectedCity]
-    //   console.log(selectedCity, latitude, longitude)
-    //   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
-
-    //   axios.get(apiUrl).then((response) => {
-    //     setWeatherData(response.data)
-    //     console.log(response.data, weatherData)
-    //   })
-    // }
+    )
+      .then((data) => {
+        console.log(data)
+        setWeatherData(data)
+      })
+      .catch((err) => console.log(err))
   }, [selectedCity])
 
   const handleCityChange = (event) => {
@@ -77,10 +89,10 @@ function App() {
     let hours = dateObj.getHours()
     let minutes = dateObj.getMinutes()
     if (hours < 10) {
-      hours = "0" + hours
+      hours = '0' + hours
     }
     if (minutes < 10) {
-      minutes = "0" + minutes
+      minutes = '0' + minutes
     }
     return `${hours}:${minutes}`
   }
@@ -122,14 +134,14 @@ function App() {
                           <div className="city-name">{data.name}</div>
                           <div className="weather-desc">
                             {data.weather ? (
-                              <p>{data.weather[0].description}</p>
+                              <p>{data.weather.description}</p>
                             ) : null}
                           </div>
                         </div>
                         <div className="weather-info">
                           {data.weather ? (
                             <img
-                              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                              src={`https://openweathermap.org/img/wn/${data.weather.icon}@2x.png`}
                               alt="weather-pic"
                             />
                           ) : null}
@@ -158,48 +170,46 @@ function App() {
                           </div>
                           <div className="precipitation">
                             Precipitation (3h):{' '}
+                            {data.rain ? data.rain['3h'] : 'Not available'}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="forecast">
-                    <div className="hourly-forecast">
-                      <div className="time-and-weather">
-                        <p className="forecast-time">time</p>
-                        <p className="forecast-pic">waether pic</p>
-                        <p className="forecast-temperature">temperstur C</p>
+                    {data.forecast.list.map((item) => (
+                      <div className="hourly-forecast" key={item.dt}>
+                        <div className="time-and-weather">
+                          <div className="forecast-time">
+                            {item.dt_txt.slice(11, 16)}
+                          </div>
+                          <div className="forecast-pic">
+                            {item.weather ? (
+                              <img
+                                src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                                alt="weather-pic"
+                              />
+                            ) : null}
+                          </div>
+                          <div className="forecast-temperature">
+                            {item.main ? (
+                              <p>{item.main.temp.toFixed()}°C</p>
+                            ) : null}
+                          </div>
+                        </div>
+                        <div className="forecast-additional-info">
+                          <div>
+                            {item.wind ? (
+                              <p>{item.wind.speed.toFixed(1)} m/s</p>
+                            ) : null}
+                          </div>
+                          <div>
+                            {item.main ? <p>{item.main.humidity} %</p> : null}
+                          </div>
+                          <div>{item.rain ? item.rain['3h'] : 'Not available'}</div>
+                        </div>
                       </div>
-                      <div className="forecast-additional-info">
-                        <p>wind</p>
-                        <p>humidity</p>
-                        <p>precipitation</p>
-                      </div>
-                    </div>
-                    <div className="hourly-forecast">
-                      <div className="time-and-weather">
-                        <p className="forecast-time">time</p>
-                        <p className="forecast-pic">waether pic</p>
-                        <p className="forecast-temperature">temperstur C</p>
-                      </div>
-                      <div className="forecast-additional-info">
-                        <p>wind</p>
-                        <p>humidity</p>
-                        <p>precipitation</p>
-                      </div>
-                    </div>
-                    <div className="hourly-forecast">
-                      <div className="time-and-weather">
-                        <p className="forecast-time">time</p>
-                        <p className="forecast-pic">waether pic</p>
-                        <p className="forecast-temperature">temperstur C</p>
-                      </div>
-                      <div className="forecast-additional-info">
-                        <p>wind</p>
-                        <p>humidity</p>
-                        <p>precipitation</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               )
