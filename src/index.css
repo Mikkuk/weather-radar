@@ -11,10 +11,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* global style for images */
 img {
   height: auto;
   max-width: 100%;
 }
+
 .App {
   width: 100%;
   display: flex;
@@ -24,18 +27,7 @@ img {
   background-color: #F8F9FA;
 }
 
-.container {
-  max-width: 700px;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: top;
-  margin: 1rem;
-  padding: 1rem;
-}
-
+/* styling for the title component */
 .top {
   height: 100%;
   width: 100%;
@@ -48,12 +40,26 @@ img {
   background-color: #FFFFFF;
 }
 
-.top h1 {
+.title>h1 {
 text-align: center;
 font-size: 23pt;
 color: #262626;
 }
 
+/* styling for container which includes city select and weather info */
+.container {
+  max-width: 700px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+/* common styles for app sections */
 .section {
   display: flex;
   width: 100%;
@@ -63,6 +69,7 @@ color: #262626;
   background-color: #FFFFFF;
 }
 
+/* styling for dropdown menu component */
 .city-select {
   display: flex;
   align-items: center;
@@ -73,16 +80,18 @@ color: #262626;
 .city-select>select {
   width: 100%;
   border: 0.8px solid transparent;
-  font-size: 13px;
+  font-size: 13pt;
   color: #262626;
 }
 
+/* styling for the weather component */
 .weather-component{
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
+/* styling for the current weather component and its items */
 .current-weather {
   display: flex;
   justify-content: center;
@@ -96,13 +105,13 @@ color: #262626;
 }
 
 .city-name {
-  font-size: 19px;
+  font-size: 19pt;
   color: #262626;
   text-align: left;
 }
 
 .weather-desc {
-  font-size: 13px;
+  font-size: 13pt;
   color: #70757A;
   text-align: justify;
 }
@@ -116,27 +125,33 @@ color: #262626;
   margin-top: -30px;
 }
 
-
 .temperature {
-  font-size: 26px;
+  font-size: 26pt;
   color: #262626;
 }
 
+.datetime {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .date {
-  font-size: 15px;
+  font-size: 15pt;
   color: #262626;
 }
 
 .time {
-  font-size: 13px;
+  font-size: 13pt;
   color: #70757A;
 }
 
 .additional-info {
-  font-size: 13px;
+  font-size: 13pt;
   color: #70757A;
 }
 
+/* styling for the forecast component and iits items */
 .forecast {
   display: flex;
   flex-direction: row;
@@ -167,14 +182,13 @@ color: #262626;
   border-top-right-radius: 0.5rem;
 }
 
-
 .forecast-time {
-  font-size: 13px;
+  font-size: 13pt;
   color: #70757A;
 }
 
 .forecast-temperature {
-  font-size: 15px;
+  font-size: 15pt;
   color: #70757A;
 }
 

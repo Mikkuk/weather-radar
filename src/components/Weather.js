@@ -66,7 +66,7 @@ export const Weather = ({ weatherData, selectedCity }) => {
                     </div>
                   </div>
                   <div className="dataset">
-                    <div>
+                    <div className="datetime">
                       <p className="date">{formatDate(data.dt)}</p>
                       <p className="time">{formatTime(data.dt)}</p>
                     </div>
